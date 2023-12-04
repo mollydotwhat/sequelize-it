@@ -1,3 +1,5 @@
+//i think this is where I'm getting problems when I'm trying to seed the db. 
+
 require('dotenv').config();
 
 const Sequelize = require('sequelize');
