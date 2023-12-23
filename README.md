@@ -1,5 +1,4 @@
-# Writing the serverside of an ecommerce app
+# Serverside E-commerce
+ This demonstrates routing with Sequelize/mySQL. 
 
-Write up the models and their sequelize relationships, then write the routes. 
-
-Models/tables are done but the routes need finishing and testing.
+The models are Categories, Products, and Tags. The ProductTag model connects Products and Tags. Routes are defined for models Categories, Products, and Tags. (With included fields/models.)
