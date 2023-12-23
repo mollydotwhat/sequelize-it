@@ -3,26 +3,26 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   // find all categories
   // be sure to include its associated Products
   try {
-    const payload = Category.findAll(
+    const payload = await Category.findAll(
       {
         include: { model: Product }
       }
     );
     res.status(200).json(payload);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({payload: err.message})
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
   try {
-    const payload = Category.findByPk(
+    const payload = await Category.findByPk(
       req.params.id,
       {
         include: { model: Product }
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
     );
     res.status(200).json(payload)
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json({payload: err.message})
   }
 });
 
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     const payload = await Category.create(req.body);
     res.status(200).json(payload);
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json({payload: err.message})
 
   }
 });
@@ -59,7 +59,7 @@ router.put('/:id', async (req, res) => {
       });
     res.status(200).json(payload)
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({payload: err.message})
   }
 
 });
@@ -73,7 +73,7 @@ router.delete('/:id', async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json({payload: err.message})
   }
 });
 
